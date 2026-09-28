@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sandcastle Siege: Download</title>
+<meta name="description" content="Sandcastle Siege: defend your sandcastle from a candy-colored toy army. Free on iOS and Android.">
+<meta property="og:title" content="Sandcastle Siege">
+<meta property="og:description" content="Defend your sandcastle from a candy-colored toy army. Free on iOS and Android.">
+<style>
+  :root { --ink: #2a1850; --pink: #e23d86; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #fff;
+         background: linear-gradient(160deg, #8ed8ff, #c9a4f4 55%, #ff8fc8); display: flex; align-items: center; justify-content: center; padding: 24px 16px; }
+  main { width: 100%; max-width: 420px; text-align: center; }
+  h1 { margin: 16px 0 6px; font-size: 2.2rem; line-height: 1.05; text-shadow: 0 3px 0 rgba(42,24,80,.45); }
+  p { margin: 0 0 22px; font-size: 1.05rem; color: #fff; text-shadow: 0 1px 2px rgba(42,24,80,.4); }
+  .icon { width: 132px; height: 132px; border-radius: 30px; border: 5px solid #fff; box-shadow: 0 10px 30px rgba(42,24,80,.35); }
+  a.btn { display: block; margin: 12px 0; padding: 16px 20px; border-radius: 18px; text-decoration: none; font-weight: 800; font-size: 1.15rem;
+          background: #fff; color: var(--ink); box-shadow: 0 6px 0 rgba(42,24,80,.35); }
+  a.btn.play { background: var(--pink); color: #fff; }
+  small { display: block; margin-top: 18px; opacity: .85; }
+  small a { color: #fff; }
+</style>
+</head><body><main>
+  <img class="icon" src="icon.png" alt="Sandcastle Siege icon">
+  <h1>Sandcastle Siege</h1>
+  <p>Defend your sandcastle from a candy-colored toy army. Free to play.</p>
+  <a class="btn" id="ios" href="https://apps.apple.com/app/id6816385451">Download on the App Store</a>
+  <a class="btn play" id="android" href="https://play.google.com/store/apps/details?id=com.aydinpolat.sandcastlesiege">Get it on Google Play</a>
+  <small><a href="https://ayetkilidi.app/sandcastle-siege/privacy/">Privacy policy</a></small>
+</main>
+<script>
+  // ?src=tiktok (or /tt/ etc.) tags the store links so installs show per channel:
+  // Play Console acquisition (utm_source) and App Store Connect sources (ct, needs PT).
+  const PT = '';  // App Store Connect provider token; ct is ignored by Apple without it
+  const src = (new URLSearchParams(location.search).get('src') || window.SRC || 'web').replace(/[^\w-]/g, '').slice(0, 40);
+  const ios_a = document.getElementById('ios'), play_a = document.getElementById('android');
+  if (PT) ios_a.href += '?pt=' + PT + '&ct=' + src + '&mt=8';
+  play_a.href += '&referrer=' + encodeURIComponent('utm_source=' + src + '&utm_medium=social&utm_campaign=launch');
+  // Phones go straight to their store; everyone else sees both buttons.
+  const ua = navigator.userAgent || '';
+  const ios = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  const android = /Android/i.test(ua);
+  if (ios) location.replace(document.getElementById('ios').href);
+  else if (android) location.replace(document.getElementById('android').href);
+</script>
+</body></html>
